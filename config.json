@@ -1,0 +1,10 @@
+{
+  "http_players": "http://{}/players.json",
+  "http_info": "http://{}/info.json",
+  "help_text": "Type \"$status\" to get the status of the FiveM Server\nType \"$players\" to view who's playing on the Server\nType \"$ip\" to get the ip of the Server'",
+  "icon_success": ":white_check_mark:",
+  "icon_failed": ":x:",
+  "cmd": {
+    "$ip": "The current server is xxx.xxx.xxx.xxx:xxxxx"
+  }
+}
