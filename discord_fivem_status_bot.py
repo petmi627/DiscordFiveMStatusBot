@@ -43,11 +43,21 @@ class FiveMStatusClient(discord.Client):
         if "$status" in message.content:
             logger.info(
                 "Message from {} in {} contains {}".format(str(message.author), message.channel, message.content))
-            await message.channel.send(self.getServerInfo(os.environ['server_ip']))
+            server = message.content.split(" ")[-1].lower()
+            if server in self.config["servers"].keys():
+                await message.channel.send(self.getServerInfo(self.config["servers"][server]))
+            else:
+                for key, server in self.config["servers"]:
+                    await message.channel.send(self.getServerInfo(server))
         if "$players" in message.content:
             logger.info(
                 "Message from {} in {} contains {}".format(str(message.author), message.channel, message.content))
-            await message.channel.send(self.getPlayerInfo(os.environ['server_ip']))
+            server = message.content.split(" ")[-1].lower()
+            if server in self.config["servers"].keys():
+                await message.channel.send(self.getPlayerInfo(self.config["servers"][server]))
+            else:
+                await message.channel.send(self.getServerInfo(self.config["servers"]["main"]))
+
         if message.content in self.config['cmd'].keys():
             await message.channel.send(self.config['cmd'][message.content])
 
@@ -65,7 +75,7 @@ class FiveMStatusClient(discord.Client):
 
         if type(players) == list and type(status) == dict:
             logger.info("fetching players")
-            msg = "There are currently {} of {} players online\n```".format(len(players), status["vars"]["sv_maxClients"])
+            msg = "There are currently {} of {} players online. Server IP {}\n```".format(len(players), status["vars"]["sv_maxClients"], ip)
             index = 1
             for player in players:
                 msg += "#{} - [{}] \"{}\" has a ping of {}\n".format(index, player['id'], player['name'], player['ping'])
