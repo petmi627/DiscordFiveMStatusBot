@@ -41,22 +41,27 @@ class FiveMStatusClient(discord.Client):
             await message.channel.send('I was created by {}'.format(developed_by))
 
         if "$status" in message.content:
+            msg = await message.channel.send("Fetching data, please wait")
             logger.info(
                 "Message from {} in {} contains {}".format(str(message.author), message.channel, message.content))
             server = message.content.split(" ")[-1].lower()
             if server in self.config["servers"].keys():
                 await message.channel.send(self.getServerInfo(self.config["servers"][server]))
             else:
-                for key, server in self.config["servers"]:
-                    await message.channel.send(self.getServerInfo(server))
+                for server in self.config["servers"]:
+                    print(self.config["servers"][server])
+                    await message.channel.send(self.getServerInfo(self.config["servers"][server]))
+            await msg.delete()
         if "$players" in message.content:
+            msg = await message.channel.send("Fetching data, please wait")
             logger.info(
                 "Message from {} in {} contains {}".format(str(message.author), message.channel, message.content))
             server = message.content.split(" ")[-1].lower()
             if server in self.config["servers"].keys():
                 await message.channel.send(self.getPlayerInfo(self.config["servers"][server]))
             else:
-                await message.channel.send(self.getServerInfo(self.config["servers"]["main"]))
+                await message.channel.send(self.getPlayerInfo(self.config["servers"]["main"]))
+            await msg.delete()
 
         if message.content in self.config['cmd'].keys():
             await message.channel.send(self.config['cmd'][message.content])
