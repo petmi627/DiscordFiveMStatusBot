@@ -1,6 +1,6 @@
 import os, discord, sys, logging, requests, json, random, time
 
-version = "1.1.0"
+version = "1.1.1"
 developed_by = "KywoSkylake: https://github.com/petmi627"
 
 logger = logging.getLogger()
@@ -50,8 +50,12 @@ class FiveMStatusClient(discord.Client):
                 fetching = await message.channel.send(self.getRandomMessages('loading'))
                 time.sleep(1)
                 if message_received.startswith("status"):
-                    for msg in self.retrivingServerInfo(server):
-                        await message.channel.send(msg)
+                    resp = self.retrivingServerInfo(server)
+                    if type(resp) == list:
+                        for msg in self.retrivingServerInfo(server):
+                            await message.channel.send(msg)
+                    else:
+                        await message.channel.send(resp)
                 if message_received.startswith("players"):
                     await message.channel.send(self.retrivingPlayerlist(server))
                 await fetching.delete()

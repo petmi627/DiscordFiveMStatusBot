@@ -10,10 +10,16 @@ Please clone the repository and navigate to the working directory and build the 
 docker build -t dicord-fivem-status-bot .
 ```
 
+To modify the configuration file please copy it and make the modification to the copy
+
+```bash
+cp config.json config.local.json
+```
+
 After the operation you can start the bot, you need to change the variables as you need it.
 
 ```bash
-docker run --detach -e "token=[Your Token]" -v "${PWD}/config.json:config.json" --name dicord-bot-fivem-status dicord-fivem-status-bot
+docker run --detach -e "token=[Your Token]" -v "${PWD}/config.local.json:/config.json" --name dicord-bot-fivem-status dicord-fivem-status-bot
 ```
 
 ## Usage
