@@ -13,7 +13,7 @@ docker build -t dicord-fivem-status-bot .
 After the operation you can start the bot, you need to change the variables as you need it.
 
 ```bash
-docker run --detach -e "token=[Your Token]" --name dicord-bot-fivem-status dicord-fivem-status-bot
+docker run --detach -e "token=[Your Token]" -v "${PWD}/config.json:config.json" --name dicord-bot-fivem-status dicord-fivem-status-bot
 ```
 
 ## Usage

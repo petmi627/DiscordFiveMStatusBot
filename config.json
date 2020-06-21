@@ -1,13 +1,46 @@
 {
   "http_players": "http://{}/players.json",
   "http_info": "http://{}/info.json",
-  "help_text": "Type \"$status\" to get the status of the FiveM Server\nType \"$players\" to view who's playing on the Server\nType \"$ip\" to get the ip of the Server'",
+  "help_text": "Type `$status` to get the status of all FiveM server\nType `$players` to view who's playing on main the server\nType `$ip` to get the ip of the servers",
   "icon_success": ":white_check_mark:",
   "icon_failed": ":x:",
+  "include_server_key_in_message": true,
+  "messages": {
+    "offline": [
+      "The Server is currently offline :(",
+      "The military base started an intercontinental missile, therefor the server is offline",
+      "Well, I can't connect to it, so I guess it's offline",
+      "Beep boop beep, server unavailable",
+      "The police forces are chasing the server, it's now unavailable",
+      "A message from the server: https://tenor.com/view/yes-uw-u-im-offline-sorry-gif-15993223",
+      "The security camera of the server room want tell you something: https://tenor.com/view/office-server-power-lady-unplug-gif-8220789"
+    ],
+    "online": [
+      "The server is up and running: https://tenor.com/view/server-runing-server-up-and-running-hamster-gif-17522250",
+      "Yes, the server is running",
+      "Whoa I just traveled with lightspeed to check if the server is online, and guess what, it is.",
+      "A message from the server: https://tenor.com/view/housewives-of-westeros-im-online-gif-12471648",
+      "The server is https://tenor.com/view/internship-vincevaughn-online-on-the-line-gif-9803864"
+    ],
+    "loading": [
+      "Fetching data, please wait",
+      "Getting the intel ready",
+      "Loading data https://tenor.com/view/chika-chika-dance-anime-anime-dance-dance-gif-13973731",
+      "I'm still loading, but who would win https://tenor.com/view/loading-girls-fight-punch-gif-17408177",
+      "Starting windows xp please wait https://tenor.com/view/windows-loading-slow-gif-4904442",
+      "Please wait a bit",
+      "I'm getting everything ready, you can lean back",
+      "Travelling beyond time and space, this can take some time"
+    ],
+    "players": [
+      "There are currently {} of {} players online",
+      "{}/{} are playing cops and robbers"
+    ]
+  },
   "servers": {
-    "main": "server_ip"
+    "main": "xxx.xxx.xxx.xxx:xxxxx"
   },
   "cmd": {
-    "$ip": "The current server is xxx.xxx.xxx.xxx:xxxxx"
+    "ip": "The current server is xxx.xxx.xxx.xxx:xxxxx"
   }
 }
