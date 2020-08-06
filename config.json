@@ -5,6 +5,7 @@
   "icon_success": ":white_check_mark:",
   "icon_failed": ":x:",
   "include_server_key_in_message": true,
+  "show_ip": false,
   "messages": {
     "offline": [
       "The Server is currently offline :(",

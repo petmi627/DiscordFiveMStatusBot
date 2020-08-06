@@ -1,6 +1,6 @@
 import os, discord, sys, logging, requests, json, random, time
 
-version = "1.1.1"
+version = "1.1.2"
 developed_by = "KywoSkylake: https://github.com/petmi627"
 
 logger = logging.getLogger()
@@ -85,7 +85,10 @@ class FiveMStatusClient(discord.Client):
         status = self.getJson(self.config['http_info'].format(ip))
         if type(status) == dict:
             logger.info("Server is online")
-            return "{} {} server with IP {}:  {}".format(self.config["icon_success"], server, ip, self.getRandomMessages("online"))
+            if self.config["show_ip"]:
+                return "{} {} server with IP {}:  {}".format(self.config["icon_success"], server, ip, self.getRandomMessages("online"))
+            else:
+                return "{} {} server:  {}".format(self.config["icon_success"], server, self.getRandomMessages("online"))
         else:
             return status
 
@@ -94,7 +97,10 @@ class FiveMStatusClient(discord.Client):
         players = self.getJson(self.config['http_players'].format(ip))
         if type(players) == list and type(status) == dict:
             logger.info("fetching players")
-            msg = "{}, {} server IP {}\n".format(self.getRandomMessages('players').format(len(players), status["vars"]["sv_maxClients"]), server, ip)
+            if self.config["show_ip"]:
+                msg = "{}, {} server IP {}\n".format(self.getRandomMessages('players').format(len(players), status["vars"]["sv_maxClients"]), server, ip)
+            else:
+                msg = "{}\n".format( self.getRandomMessages('players').format(len(players), status["vars"]["sv_maxClients"]))
             if len(players) > 0:
                 msg+="```python\n"
             index = 1
